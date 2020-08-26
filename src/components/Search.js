@@ -6,12 +6,9 @@ const Search = (props) => {
 	const [searchtext, setSearchtext] = useState('')
 	const movieContext = useContext(MovieContext)
 
-	const handlesubmit = () => {
-		debugger
-		console.log("props", props)
-		console.log("Handle Submit: ", searchtext)
+	const handlesubmit = (e) => {
+		e.preventDefault()
 		movieContext.setSearchmovie(searchtext)
-		console.log("Search", movieContext.searchmovie)
 	}
 
 	return (

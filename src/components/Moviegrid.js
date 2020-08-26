@@ -8,33 +8,32 @@ import { MovieContext } from '../contexts/MovieContext'
 const Moviegrid = (props) => {
 
 	const movieContext = useContext(MovieContext)
-	const [movies, setMovies] = useState([])
 	const [pages, setPages] = useState(1)
 
-	// console.log("Movie Context: ", movieContext)
-	// console.log("props", props)
-	// console.log("URL: ", movieContext.moviedburl)
-
 	useEffect( () => {
+		// console.log("Search 1:", movieContext.searchmovie)
+		// console.log("Search:", movieContext.searchmovie)
+		// console.log("Search:", movieContext.movies)
+
 		Axios.get(movieContext.moviedburl)
 		.then( data => {
-			console.log("data", data)
-			console.log("data.data", data.data)
-			console.log("results", data.data.results)
-			console.log("Total Page: ", data.data.total_pages)
-			console.log("Search:", movieContext.searchmovie)
-			console.log("moviedburl", movieContext.moviedburl)
+			// console.log("data", data)
+			// console.log("data.data", data.data)
+			// console.log("results", data.data.results)
+			// console.log("Total Page: ", data.data.total_pages)
+			// console.log("Search 2:", movieContext.searchmovie)
+			// console.log("moviedburl", movieContext.moviedburl)
 			setPages(data.data.total_pages)
-			setMovies(data.data.results)
+			movieContext.setMovies(data.data.results)
 		})		
-	}, [movieContext.curpage, movieContext.search])
+	}, [movieContext.curpage, movieContext.searchmovie])
 
 
 	return (
 		<div>
 		<div className="grid grid-5column grid-lg-gap">
 			{
-				movies.map( movie =>
+				movieContext.movies.map( movie =>
 					<div key={movie.id} className="card">
 						<div className="cardimage"><img src={`${process.env.REACT_APP_MOVIE_IMG_PREFIX}${movie.poster_path}`} /></div>
 						<div className="cardcontent center">{ movie.title }</div>
