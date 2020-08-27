@@ -11,22 +11,17 @@ const Moviegrid = (props) => {
 	const [pages, setPages] = useState(1)
 
 	useEffect( () => {
-		// console.log("Search 1:", movieContext.searchmovie)
-		// console.log("Search:", movieContext.searchmovie)
-		// console.log("Search:", movieContext.movies)
 
 		Axios.get(movieContext.moviedburl)
 		.then( data => {
-			// console.log("data", data)
-			// console.log("data.data", data.data)
-			// console.log("results", data.data.results)
-			// console.log("Total Page: ", data.data.total_pages)
-			// console.log("Search 2:", movieContext.searchmovie)
-			// console.log("moviedburl", movieContext.moviedburl)
 			setPages(data.data.total_pages)
 			movieContext.setMovies(data.data.results)
 		})		
 	}, [movieContext.curpage, movieContext.searchmovie])
+
+	const moviedetial = (movieid) => {
+		movieContext.setMovieid(movieid)
+	}
 
 
 	return (
@@ -34,9 +29,16 @@ const Moviegrid = (props) => {
 		<div className="grid grid-5column grid-lg-gap">
 			{
 				movieContext.movies.map( movie =>
-					<div key={movie.id} className="card">
-						<div className="cardimage"><img src={`${process.env.REACT_APP_MOVIE_IMG_PREFIX}${movie.poster_path}`} /></div>
-						<div className="cardcontent center">{ movie.title }</div>
+					<div key={movie.id} onClick={()=>moviedetial(movie.id)}>
+						<div className="card">
+							<div className="cardimage">
+								{ movie.poster_path !== null
+									? <img src={`${process.env.REACT_APP_MOVIE_IMG_PREFIX}${movie.poster_path}`} />
+									: <img src="https://via.placeholder.com/440x660" />
+								}
+							</div>
+							<div className="cardcontent center">{ movie.title }</div>
+						</div>
 					</div>
 				)
 			}
@@ -46,11 +48,11 @@ const Moviegrid = (props) => {
 			<div>Page {movieContext.curpage} of {pages}</div>
 			<div className="flex">
 				<div>{ movieContext.curpage>1
-					? <div onClick={()=>movieContext.setCurpage(movieContext.curpage-1)}><img src={require("../assets/css/rounded-left.svg")} width={20} /></div>
+					? <div className="cursor-pointer" onClick={()=>movieContext.setCurpage(movieContext.curpage-1)}><img src={require("../assets/css/rounded-left.svg")} width={20} /></div>
 					: '' }
 				</div>
 				<div>{ movieContext.curpage<pages
-					? <div onClick={()=>movieContext.setCurpage(movieContext.curpage+1)}><img src={require("../assets/css/rounded-right.svg")} width={20} /></div>
+					? <div className="cursor-pointer" onClick={()=>movieContext.setCurpage(movieContext.curpage+1)}><img src={require("../assets/css/rounded-right.svg")} width={20} /></div>
 					: '' }
 				</div>
 			</div>

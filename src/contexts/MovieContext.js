@@ -6,6 +6,7 @@ export const MovieProvider = props => {
 
 	const [curpage, setCurpage] = useState(1)
 	const [movies, setMovies] = useState([])
+	const [movieid, setMovieid] = useState(null)
 	const [searchmovie, setSearchmovie] = useState('')
 
 	let moviedburl
@@ -18,7 +19,7 @@ export const MovieProvider = props => {
 
 	const returnlist = {
 		moviedburl, curpage, setCurpage, searchmovie, setSearchmovie,
-		movies, setMovies
+		movies, setMovies, movieid, setMovieid
 	}
 
 	return (

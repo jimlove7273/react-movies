@@ -9,11 +9,13 @@ const Search = (props) => {
 	const handlesubmit = (e) => {
 		e.preventDefault()
 		movieContext.setSearchmovie(searchtext)
+		movieContext.setMovieid(null)
+		movieContext.setCurpage(1)
 	}
 
 	return (
 		// <form className="flex py4" onSubmit={handlesubmit()}>
-		<form className="flex py4" onSubmit={handlesubmit}>
+		<form className="flex py2" onSubmit={handlesubmit}>
 			<input className="mb0 mr1"
 				type="text" name="search" placeholder="Search a Movie...."
 				value={searchtext} onChange={(e)=>setSearchtext(e.target.value)}

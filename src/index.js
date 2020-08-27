@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ReactDOM from 'react-dom'
 
 import { MovieProvider } from './contexts/MovieContext'
@@ -6,17 +6,19 @@ import { MovieProvider } from './contexts/MovieContext'
 import Search from './components/Search'
 
 // --- Components
+import Griddetail from './components/Griddetail'
 import Moviegrid from './components/Moviegrid'
 import Movie from './components/Movie'
 
-export const App = () => {
+export const App = (props) => {
+
+
   return (
     <MovieProvider>
       <div className="container">
-        <h2 className="py4">React Movies</h2>
+        <h2 className="py2">React Movies</h2>
         <Search />
-        <Moviegrid />
-        <Movie />
+        <Griddetail />
       </div>
     </MovieProvider>
 

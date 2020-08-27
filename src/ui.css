@@ -11,7 +11,7 @@
 
 /* -------- Reset */
 * {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -38,7 +38,9 @@
 .uppercase { text-transform: uppercase; }
 .lowercase { text-transform: lowercase; }
 .capitalize { text-transform: capitalize; }
+
 .center { text-align: center; }
+.cursor-pointer { cursor: pointer; }
 
 /* -------- Image */
 .img { max-width: 100%; }
@@ -164,6 +166,9 @@
 .grid-sm-gap { grid-gap: 5px; }
 .grid-md-gap { grid-gap: 10px; }
 .grid-lg-gap { grid-gap: 20px; }
+.grid-1-2 { grid-template-columns: 1fr 2fr; }
+
+.grid img { width: 100%; }
 
 /* -------- Loader Spinner */
 .loader {
@@ -288,7 +293,18 @@ div.card .cardcontent { padding: 10px; font-size: 13px; }
 
 /* ---- Flex ----- */
 .flex { display: flex; }
+.flex-1 { flex-basis: 1; }
+.flex-2 { flex-basis: 2; }
+.flex-3 { flex-basis: 3; }
 .flex-between { justify-content: space-between; }
 
+
+/* ---- List ---- */
+.list { line-height: 1.5; }
+
+
+/* ---- Font Size ---- */
+.font-size13 { font-size: 13px; }
+.font-size15 { font-size: 15px; }
 
 
